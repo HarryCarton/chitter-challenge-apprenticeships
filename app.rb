@@ -1,8 +1,14 @@
 require 'sinatra/base'
+require_relative './lib/user'
 
 class Chitter < Sinatra::Base
   get '/' do
-    'Test page'
+    erb(:sign_in)
+  end
+
+  post '/links_page' do
+    @user = User.new(params[:name], params[:password])
+    erb(:links)
   end
 
   get '/peeps' do
